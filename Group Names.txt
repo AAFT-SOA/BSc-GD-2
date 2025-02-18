@@ -1,5 +1,10 @@
 BSc-GD-2
 
+<<<<<<< HEAD
+Aniket Negi
+
+Himanshu sharma
+=======
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -8,6 +13,7 @@ Aniket Negi
 =======
 Aarush Deol 
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
 Aarush Deol 
 >>>>>>> Stashed changes
@@ -17,3 +23,6 @@ Aarush Deol
 =======
 Aarush Deol 
 >>>>>>> Stashed changes
+=======
+>>>>>>> 8023795b1cd260318e169bab148eae94679cef01
+>>>>>>> 2ad6bd02067d128aa40afffed681d896794fae78
