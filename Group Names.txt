@@ -1,14 +1,30 @@
-BSc-GD-2
-<<<<<<< HEAD
+kya haal hai bhai kai 
 
+
+<<<<<<< HEAD
+Himanshu sharma
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 Aniket Negi
 =======
 Aarush Deol 
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
-Aniket Negi
-Aarush Deol
-berin premji
-Annsh Gautam
->>>>>>> 373e8d9d3ca034c499eacb39115a93d4a1501032
+Aarush Deol 
+>>>>>>> Stashed changes
+=======
+Aarush Deol 
+>>>>>>> Stashed changes
+=======
+Aarush Deol 
+>>>>>>> Stashed changes
+=======
+>>>>>>> 8023795b1cd260318e169bab148eae94679cef01
+>>>>>>> 2ad6bd02067d128aa40afffed681d896794fae78
+=======
+yo yo honey singh
+>>>>>>> 668c2d0b2042aaee24d8411746df9b3ec23cf36f
