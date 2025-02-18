@@ -1,3 +1,7 @@
 BSc-GD-2
 
+<<<<<<< Updated upstream
 Aniket Negi
+=======
+Aarush Deol 
+>>>>>>> Stashed changes
