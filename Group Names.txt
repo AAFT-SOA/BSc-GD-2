@@ -1,8 +1,7 @@
-BSc-GD-2
+kya haal hai bhai kai 
+
 
 <<<<<<< HEAD
-Aniket Negi
-
 Himanshu sharma
 =======
 <<<<<<< Updated upstream
@@ -26,3 +25,6 @@ Aarush Deol
 =======
 >>>>>>> 8023795b1cd260318e169bab148eae94679cef01
 >>>>>>> 2ad6bd02067d128aa40afffed681d896794fae78
+=======
+yo yo honey singh
+>>>>>>> 668c2d0b2042aaee24d8411746df9b3ec23cf36f
