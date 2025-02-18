@@ -1,3 +1,14 @@
 BSc-GD-2
+<<<<<<< HEAD
 
+<<<<<<< Updated upstream
 Aniket Negi
+=======
+Aarush Deol 
+>>>>>>> Stashed changes
+=======
+Aniket Negi
+Aarush Deol
+berin premji
+Annsh Gautam
+>>>>>>> 373e8d9d3ca034c499eacb39115a93d4a1501032
