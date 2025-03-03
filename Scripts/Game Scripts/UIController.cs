@@ -11,7 +11,13 @@ public class UIController : MonoBehaviour
 
     public TextMeshProUGUI TargetValue, ScoreValue;
 
-    int Target;
+    public GameObject LevelCompletePopUp;
+    public TextMeshProUGUI LC_ScoreValue;
+
+    public GameObject LevelFailedPopUp;
+    public TextMeshProUGUI LF_ScoreValue;
+
+    public int Target;
     int Score;
 
 
@@ -27,11 +33,14 @@ public class UIController : MonoBehaviour
     }
 
     void Initialize()
-    {
-        Target = 7;
+    {        
         UpdateTargetUI();
 
         Score = 0;
+        ScoreValue.text = Score.ToString();
+
+        LevelCompletePopUp.SetActive(false);
+        LevelFailedPopUp.SetActive(false);
     }
 
     void UpdateTargetUI()
@@ -40,17 +49,62 @@ public class UIController : MonoBehaviour
     }
 
 
-    public void AddScore()
+    public void AddScore(int value)
     {        
-        Score = Score + 1;
+        Score = Score + value;
         ScoreValue.text = Score.ToString();
+
+        // Check Level Complete
+        if(Score == Target)
+        {
+            StartCoroutine(WaitToOpenLevelCompletePopUp());
+        }
+
     }
-
-
-
-
     public void BackButtonClick()
     {
         SceneManager.LoadScene("Home");
     }
+
+
+    #region LevelCompletePopUp
+    IEnumerator WaitToOpenLevelCompletePopUp()
+    {
+        yield return new WaitForSeconds(1f);
+        // Open Level Complete PopUp
+        LevelCompletePopUp.SetActive(true);
+        LC_ScoreValue.text = Score.ToString();
+    }
+
+    public void LevelCompletePopUp_Restart()
+    {
+        LevelCompletePopUp.SetActive(false);
+
+        SceneManager.LoadScene("Game");
+    }
+    public void LevelCompletePopUp_Home()
+    {
+        LevelCompletePopUp.SetActive(false);
+
+        SceneManager.LoadScene("Home");
+    }
+    public void LevelCompletePopUp_Next()
+    {
+        LevelCompletePopUp.SetActive(false);
+    }
+    #endregion
+
+
+    #region LevelFailed
+    IEnumerator WaitToOpenLevelFailedPopUp()
+    {
+        yield return new WaitForSeconds(1f);
+        // Open Level Complete PopUp
+        LevelFailedPopUp.SetActive(true);
+        LF_ScoreValue.text = Score.ToString();
+    }
+
+    #endregion
+
+
 }

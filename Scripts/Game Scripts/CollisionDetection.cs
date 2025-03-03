@@ -6,14 +6,34 @@ public class CollisionDetection : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {        
-        if(collision.gameObject.tag.Equals("Enemy"))
+        if(collision.gameObject.tag.Equals("Coins"))
         {
             Debug.Log("Collide with = " + collision.gameObject.name);
             
             //Destroy enemy
             Destroy(collision.gameObject);
 
-            UIController.instance.AddScore();
+            // increase 1 points
+            UIController.instance.AddScore(1);
         }
+
+        if (collision.gameObject.tag.Equals("SuperCoins"))
+        {
+            Debug.Log("Collide with = " + collision.gameObject.name);
+
+            //Destroy enemy
+            Destroy(collision.gameObject);
+
+            // increase 2 points
+            UIController.instance.AddScore(2);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collide with = " + other.gameObject.name);
+        // game over
+
+
     }
 }
