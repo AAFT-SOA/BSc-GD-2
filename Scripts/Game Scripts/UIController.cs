@@ -17,8 +17,12 @@ public class UIController : MonoBehaviour
     public GameObject LevelFailedPopUp;
     public TextMeshProUGUI LF_ScoreValue;
 
+    public bool IsLevelFailed;
+
     public int Target;
     int Score;
+
+    public GameObject PausePopUp;
 
 
     private void Awake()
@@ -41,6 +45,8 @@ public class UIController : MonoBehaviour
 
         LevelCompletePopUp.SetActive(false);
         LevelFailedPopUp.SetActive(false);
+
+        IsLevelFailed = false;  
     }
 
     void UpdateTargetUI()
@@ -61,10 +67,7 @@ public class UIController : MonoBehaviour
         }
 
     }
-    public void BackButtonClick()
-    {
-        SceneManager.LoadScene("Home");
-    }
+    
 
 
     #region LevelCompletePopUp
@@ -95,16 +98,56 @@ public class UIController : MonoBehaviour
     #endregion
 
 
-    #region LevelFailed
+    #region LevelFailedPopUp
+    public void OpenLevelFailedPopUp()
+    {
+        StartCoroutine(WaitToOpenLevelFailedPopUp());
+    }
+
     IEnumerator WaitToOpenLevelFailedPopUp()
     {
         yield return new WaitForSeconds(1f);
         // Open Level Complete PopUp
         LevelFailedPopUp.SetActive(true);
         LF_ScoreValue.text = Score.ToString();
-    }
 
+        IsLevelFailed = true;
+    }
+    public void LevelFailedPopUp_Restart()
+    {
+        LevelFailedPopUp.SetActive(false);
+
+        SceneManager.LoadScene("Game");
+    }
+    public void LevelFailedPopUp_Home()
+    {
+        LevelFailedPopUp.SetActive(false);
+
+        SceneManager.LoadScene("Home");
+    }
     #endregion
 
 
+    #region PausePopUp
+    public void PauseButtonClick()
+    {
+        // Open Pause PopUp
+        PausePopUp.SetActive(true);
+        Time.timeScale = 0;
+    }
+    
+    public void Pause_ResumeClick()
+    {
+        Time.timeScale = 1;
+        PausePopUp.SetActive(false);
+        
+    }
+
+    public void Pause_HomeClick()
+    {
+        Time.timeScale = 1;
+        PausePopUp.SetActive(false);
+        SceneManager.LoadScene("Home");
+    }
+    #endregion
 }

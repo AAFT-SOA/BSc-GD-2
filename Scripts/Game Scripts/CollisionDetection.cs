@@ -5,11 +5,11 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
-    {        
-        if(collision.gameObject.tag.Equals("Coins"))
+    {
+        if (collision.gameObject.tag.Equals("Coins"))
         {
             Debug.Log("Collide with = " + collision.gameObject.name);
-            
+
             //Destroy enemy
             Destroy(collision.gameObject);
 
@@ -27,13 +27,28 @@ public class CollisionDetection : MonoBehaviour
             // increase 2 points
             UIController.instance.AddScore(2);
         }
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            Debug.Log("Collide with = " + collision.gameObject.name);
+
+            // Destroy Player
+            Destroy(gameObject);
+
+            if (UIController.instance != null)
+            {
+                UIController.instance.OpenLevelFailedPopUp();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collide with = " + other.gameObject.name);
         // game over
-
+        if (UIController.instance != null)
+        {
+            UIController.instance.OpenLevelFailedPopUp();
+        }
 
     }
 }

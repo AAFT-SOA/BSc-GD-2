@@ -33,6 +33,15 @@ public class Movement : MonoBehaviour
         MovePlayer();
         RunAnimation();
         RotatePlayer();
+
+        if(UIController.instance != null)
+        {
+            if(UIController.instance.IsLevelFailed == true)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                UIController.instance.IsLevelFailed = false;
+            }
+        }
     }
 
     void GetInput()
