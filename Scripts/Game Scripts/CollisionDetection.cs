@@ -44,11 +44,14 @@ public class CollisionDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collide with = " + other.gameObject.name);
-        // game over
-        if (UIController.instance != null)
+        if (other.gameObject.tag.Equals("FallZone"))
         {
-            UIController.instance.OpenLevelFailedPopUp();
-        }
+            // game over
+            if (UIController.instance != null)
+            {
+                UIController.instance.OpenLevelFailedPopUp();
+            }
 
+        }
     }
 }
