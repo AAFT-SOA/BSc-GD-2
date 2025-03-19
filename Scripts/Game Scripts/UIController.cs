@@ -81,18 +81,33 @@ public class UIController : MonoBehaviour
 
     public void LevelCompletePopUp_Restart()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         LevelCompletePopUp.SetActive(false);
 
         SceneManager.LoadScene("Game");
     }
     public void LevelCompletePopUp_Home()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         LevelCompletePopUp.SetActive(false);
 
         SceneManager.LoadScene("Home");
     }
     public void LevelCompletePopUp_Next()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         LevelCompletePopUp.SetActive(false);
     }
     #endregion
@@ -115,12 +130,22 @@ public class UIController : MonoBehaviour
     }
     public void LevelFailedPopUp_Restart()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         LevelFailedPopUp.SetActive(false);
 
         SceneManager.LoadScene("Game");
     }
     public void LevelFailedPopUp_Home()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         LevelFailedPopUp.SetActive(false);
 
         SceneManager.LoadScene("Home");
@@ -131,6 +156,11 @@ public class UIController : MonoBehaviour
     #region PausePopUp
     public void PauseButtonClick()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         // Open Pause PopUp
         PausePopUp.SetActive(true);
         Time.timeScale = 0;
@@ -138,13 +168,22 @@ public class UIController : MonoBehaviour
     
     public void Pause_ResumeClick()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         Time.timeScale = 1;
-        PausePopUp.SetActive(false);
-        
+        PausePopUp.SetActive(false);        
     }
 
     public void Pause_HomeClick()
     {
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
         Time.timeScale = 1;
         PausePopUp.SetActive(false);
         SceneManager.LoadScene("Home");

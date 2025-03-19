@@ -10,20 +10,39 @@ public class HomeController : MonoBehaviour
     private void Start()
     {
         SettingsPanelPopUp.SetActive(false);
+
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.MusicPlay(true);
+        }
+
     }
 
 
     public void Play()
     {
-        SceneManager.LoadScene("Game");
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
+        SceneManager.LoadScene("Game");        
     }
     public void Settings()
     {
-        if(SettingsPanelPopUp != null)
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
+
+        if (SettingsPanelPopUp != null)
             SettingsPanelPopUp.SetActive(true);
     }
     public void About()
     {
-
+        if (MusicSoundController.instance != null)
+        {
+            MusicSoundController.instance.ButtonClickSound();
+        }
     }
 }

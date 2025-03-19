@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicSoundController : MonoBehaviour
 {
     public static MusicSoundController instance;
 
-
     public AudioSource MusicSource, SoundSource;
+    public AudioClip ButtonClickClip,DeadPlayerClip;
 
     private void Awake()
     {
@@ -20,19 +18,37 @@ public class MusicSoundController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //PlayerPrefs.DeleteAll();
+
+        LoadMusicAndSoundData();
     }
 
-
-    private void Start()
+       
+    public void LoadMusicAndSoundData()
     {
-        MusicPlay(true);
+        if (PlayerPrefs.GetInt("GAME_START") == 0)
+        {
+            if (PlayerPrefs.GetFloat("MUSIC") == 0f)
+                PlayerPrefs.SetFloat("MUSIC", 1);
+
+            if (PlayerPrefs.GetFloat("SOUND") == 0f)
+                PlayerPrefs.SetFloat("SOUND", 1);
+
+
+            PlayerPrefs.SetInt("GAME_START", 1);
+        }
+
+        MusicSliderValueChanged(PlayerPrefs.GetFloat("MUSIC"));
+        SoundSliderValueChanged(PlayerPrefs.GetFloat("SOUND"));
     }
+
+
 
     public void MusicPlay(bool _status)
     {
         if (MusicSource != null)
         {
-            Debug.Log("aaaaaaaa");
             if (MusicSource.clip != null)
             {
                 if (_status == true)
@@ -43,4 +59,48 @@ public class MusicSoundController : MonoBehaviour
         }
     }
 
+    public void ButtonClickSound()
+    {
+        if (SoundSource != null)
+        {
+            SoundSource.clip = ButtonClickClip;
+            SoundSource.PlayOneShot(SoundSource.clip);
+        }
+    }
+
+    public void MusicSliderValueChanged(float value)
+    {
+        if (MusicSource != null)
+        {
+            MusicSource.volume = value;
+
+            // save value
+            PlayerPrefs.SetFloat("MUSIC",value);
+        }
+    }
+
+    public void SoundSliderValueChanged(float value)
+    {
+        if (SoundSource != null)
+        {
+            SoundSource.volume = value;
+
+            // save value
+            PlayerPrefs.SetFloat("SOUND", value);
+        }
+    }
+
+
+
+    public void DeadPlayerSound()
+    {
+        if (SoundSource != null)
+        {
+            SoundSource.clip = DeadPlayerClip;
+            SoundSource.PlayOneShot(SoundSource.clip);
+
+            // Music Off
+            MusicPlay(false);
+        }
+    }
 }

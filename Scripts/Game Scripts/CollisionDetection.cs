@@ -34,6 +34,11 @@ public class CollisionDetection : MonoBehaviour
             // Destroy Player
             Destroy(gameObject);
 
+            if (MusicSoundController.instance != null)
+            {
+                MusicSoundController.instance.DeadPlayerSound();
+            }
+
             if (UIController.instance != null)
             {
                 UIController.instance.OpenLevelFailedPopUp();
@@ -50,6 +55,11 @@ public class CollisionDetection : MonoBehaviour
             if (UIController.instance != null)
             {
                 UIController.instance.OpenLevelFailedPopUp();
+            }
+
+            if (MusicSoundController.instance != null)
+            {
+                MusicSoundController.instance.DeadPlayerSound();
             }
 
         }
