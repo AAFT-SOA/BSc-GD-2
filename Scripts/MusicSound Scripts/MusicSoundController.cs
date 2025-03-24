@@ -39,10 +39,9 @@ public class MusicSoundController : MonoBehaviour
             PlayerPrefs.SetInt("GAME_START", 1);
         }
 
-        MusicSliderValueChanged(PlayerPrefs.GetFloat("MUSIC"));
-        SoundSliderValueChanged(PlayerPrefs.GetFloat("SOUND"));
+        MusicSourceValueChanged(PlayerPrefs.GetFloat("MUSIC"));
+        SoundSourceValueChanged(PlayerPrefs.GetFloat("SOUND"));
     }
-
 
 
     public void MusicPlay(bool _status)
@@ -68,18 +67,18 @@ public class MusicSoundController : MonoBehaviour
         }
     }
 
-    public void MusicSliderValueChanged(float value)
+    public void MusicSourceValueChanged(float value)
     {
         if (MusicSource != null)
-        {
+        {            
             MusicSource.volume = value;
 
             // save value
-            PlayerPrefs.SetFloat("MUSIC",value);
+            PlayerPrefs.SetFloat("MUSIC", value);
         }
     }
 
-    public void SoundSliderValueChanged(float value)
+    public void SoundSourceValueChanged(float value)
     {
         if (SoundSource != null)
         {
