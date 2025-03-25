@@ -7,6 +7,14 @@ public class HomeController : MonoBehaviour
 {
     public GameObject SettingsPanelPopUp;
 
+
+    private void Awake()
+    {
+        UnityEngine.Cursor.visible = true;
+    }
+
+
+
     private void Start()
     {
         SettingsPanelPopUp.SetActive(false);

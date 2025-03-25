@@ -25,6 +25,8 @@ public class UIController : MonoBehaviour
     public GameObject PausePopUp;
 
 
+    public bool IsAnyPopupOpened;
+
     private void Awake()
     {
         if(instance == null)
@@ -46,7 +48,8 @@ public class UIController : MonoBehaviour
         LevelCompletePopUp.SetActive(false);
         LevelFailedPopUp.SetActive(false);
 
-        IsLevelFailed = false;  
+        IsLevelFailed = false;
+        IsAnyPopupOpened = false;
     }
 
     void UpdateTargetUI()
@@ -77,6 +80,9 @@ public class UIController : MonoBehaviour
         // Open Level Complete PopUp
         LevelCompletePopUp.SetActive(true);
         LC_ScoreValue.text = Score.ToString();
+
+        IsAnyPopupOpened = true;
+        UnityEngine.Cursor.visible = true;
     }
 
     public void LevelCompletePopUp_Restart()
@@ -89,6 +95,8 @@ public class UIController : MonoBehaviour
         LevelCompletePopUp.SetActive(false);
 
         SceneManager.LoadScene("Game");
+
+        IsAnyPopupOpened = false;
     }
     public void LevelCompletePopUp_Home()
     {
@@ -100,6 +108,8 @@ public class UIController : MonoBehaviour
         LevelCompletePopUp.SetActive(false);
 
         SceneManager.LoadScene("Home");
+
+        IsAnyPopupOpened = false;
     }
     public void LevelCompletePopUp_Next()
     {
@@ -109,6 +119,8 @@ public class UIController : MonoBehaviour
         }
 
         LevelCompletePopUp.SetActive(false);
+
+        IsAnyPopupOpened = false;
     }
     #endregion
 
@@ -127,6 +139,9 @@ public class UIController : MonoBehaviour
         LF_ScoreValue.text = Score.ToString();
 
         IsLevelFailed = true;
+
+        IsAnyPopupOpened = true;
+        UnityEngine.Cursor.visible = true;
     }
     public void LevelFailedPopUp_Restart()
     {
@@ -138,6 +153,8 @@ public class UIController : MonoBehaviour
         LevelFailedPopUp.SetActive(false);
 
         SceneManager.LoadScene("Game");
+
+        IsAnyPopupOpened = false;
     }
     public void LevelFailedPopUp_Home()
     {
@@ -149,6 +166,8 @@ public class UIController : MonoBehaviour
         LevelFailedPopUp.SetActive(false);
 
         SceneManager.LoadScene("Home");
+
+        IsAnyPopupOpened = false;
     }
     #endregion
 
@@ -160,9 +179,14 @@ public class UIController : MonoBehaviour
         {
             MusicSoundController.instance.ButtonClickSound();
         }
+               
 
         // Open Pause PopUp
         PausePopUp.SetActive(true);
+
+        IsAnyPopupOpened = true;
+        UnityEngine.Cursor.visible = true;
+
         Time.timeScale = 0;
     }
     
@@ -174,7 +198,9 @@ public class UIController : MonoBehaviour
         }
 
         Time.timeScale = 1;
-        PausePopUp.SetActive(false);        
+        PausePopUp.SetActive(false);
+
+        IsAnyPopupOpened = false;
     }
 
     public void Pause_HomeClick()
@@ -187,6 +213,8 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1;
         PausePopUp.SetActive(false);
         SceneManager.LoadScene("Home");
+
+        IsAnyPopupOpened = false;
     }
     #endregion
 }
