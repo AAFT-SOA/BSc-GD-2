@@ -13,18 +13,27 @@ public class GunController : MonoBehaviour
 
     bool isReloadingGun;
 
+    AudioSource audioSource;
+
+    public AudioClip shootClip, reloadClip;
+
     public ParticleSystem MuzzleFlash;
     private void Awake()
     {
-        currentBulletCount = TotalBullets;
+        currentBulletCount = TotalBullets;      
+    }
 
+    private void Start()
+    {
         if (GameUIController.instance != null)
             GameUIController.instance.UpdateBulletsCountUI(currentBulletCount);
 
         if (GameUIController.instance != null)
             GameUIController.instance.UpdateGunStatusTextUI("");
-    }
 
+        audioSource = GetComponentInChildren<AudioSource>();
+        audioSource.clip = shootClip;
+    }
 
 
     void Update()
@@ -45,7 +54,7 @@ public class GunController : MonoBehaviour
         }
 
 
-        if (Input.GetButton("Fire1") && Time.time > nextBullet)
+        if (Input.GetButton("Fire1") && Time.time > nextBullet && currentBulletCount > 0)
         {
             nextBullet = Time.time + 1f / FireRate;
             Shoot();
@@ -60,6 +69,15 @@ public class GunController : MonoBehaviour
             MuzzleFlash.Play();
         }
         //---------------------------------------------------------------------------------//
+
+        if(audioSource != null)
+        {
+            if (audioSource.clip == null)
+                audioSource.clip = shootClip;
+
+            if(audioSource.clip != null)            
+                audioSource.PlayOneShot(audioSource.clip);            
+        }
 
 
         //------------------------------------ Bullet Count --------------------------------//
@@ -96,12 +114,22 @@ public class GunController : MonoBehaviour
 
     IEnumerator Reload()
     {
-        isReloadingGun = true;    
+        isReloadingGun = true;
+
+        if (audioSource != null)
+        {
+            if (audioSource.clip != null)
+            {
+                audioSource.clip = reloadClip;
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+        }
         
+
         if (GameUIController.instance != null)
             GameUIController.instance.UpdateGunStatusTextUI("Reloading gun ...");
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
 
         currentBulletCount = TotalBullets;
         if (GameUIController.instance != null)
@@ -111,6 +139,8 @@ public class GunController : MonoBehaviour
             GameUIController.instance.UpdateGunStatusTextUI("");
 
         isReloadingGun = false;
+
+        audioSource.clip = null;
     }
 
 }
