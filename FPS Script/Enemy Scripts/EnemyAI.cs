@@ -18,6 +18,13 @@ public class EnemyAI : MonoBehaviour
     public bool walkPointSet;
     public float walkPointRange;
 
+
+    //Attacking
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+    public GameObject projectile;
+    public Transform firePoint;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -84,9 +91,27 @@ public class EnemyAI : MonoBehaviour
 
     void AttackPlayer()
     {
+        //Make sure enemy doesn't move
+        agent.SetDestination(PlayerTransform.position);
+        transform.LookAt(PlayerTransform.position);
 
+        if (alreadyAttacked == false)
+        {
+            ///Attack code here
+            Rigidbody rb = Instantiate(projectile, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 5f, ForceMode.Impulse);
+            ///End of attack code
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+        }
     }
-
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
 
     private void OnDrawGizmosSelected()
     {
