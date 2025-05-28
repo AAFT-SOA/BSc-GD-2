@@ -7,7 +7,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision != null)
         {
-            if(!collision.gameObject.CompareTag("Head"))
+            if(!collision.gameObject.CompareTag("Head") && !collision.gameObject.CompareTag("Enemy"))
                 Destroy(gameObject);            
         }
     }

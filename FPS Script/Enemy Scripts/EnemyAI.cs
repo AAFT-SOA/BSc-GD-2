@@ -25,10 +25,18 @@ public class EnemyAI : MonoBehaviour
     public GameObject projectile;
     public Transform firePoint;
 
+
+    // Health System
+    float currentHealth;
+    public float maxHealth;
+    public EnemyHealthBar healthBar;
     void Start()
     {
+        PlayerTransform = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        currentHealth = maxHealth;
+
     }
 
     // Update is called once per frame
@@ -120,5 +128,21 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
+
+    public void EnemyDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject,0.2f);
+        }
+
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(currentHealth, maxHealth);
+        }
+    }
+
 
 }

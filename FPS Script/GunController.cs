@@ -10,6 +10,8 @@ public class GunController : MonoBehaviour
 
     public float FireRate;
     float nextBullet;
+    public float Damage;
+
 
     bool isReloadingGun;
 
@@ -105,8 +107,11 @@ public class GunController : MonoBehaviour
 
             if (hit.collider.tag.Equals("Enemy"))
             {
-                Debug.Log("hit Enemy name = " + hit.collider.gameObject.name);
-                Destroy(hit.collider.gameObject);
+                EnemyAI enemyAI = hit.collider.gameObject.GetComponent<EnemyAI>();
+                if (enemyAI != null)
+                {
+                    enemyAI.EnemyDamage(Damage);
+                }
             }
         }
         //---------------------------------------------------------------------------------//
